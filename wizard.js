@@ -29,7 +29,6 @@ class Wizard {
         }
         this.sortCourses()
         this.getSections()
-        console.log(this.courses)
     }
     sortCourses(){
         let newCourses = [];
@@ -40,7 +39,9 @@ class Wizard {
                     name: course.name,
                     code: course.code,
                     lectures: course.classes[0],
-                    recitations: (course.classes.length == 1 ? null : course.classes[1])
+                    recitations: (course.classes.length == 1 ? null : course.classes[1]),
+                    lectureCount: 0,
+                    recitCount: 0,
                 }
                 newCourses.push(tempCourse)
             }
@@ -51,8 +52,12 @@ class Wizard {
         })
         return true;
     }
+    /**
+     * Gets the sections of the courses, mutates course objects and 
+     * pushes to a property.
+     */
     getSections(){
-        // This function runs in O(n^3), should reduce the amount of time it takes.
+        //TODO Reduce the time it takes 
         this.courses.forEach(course => {
             course.sectionCount = [[0,0],[0,0],[0,0],[0,0],[0,0]] // [lectureCount, recitCount]
             course.lectures.sections.forEach(section => {
@@ -60,13 +65,24 @@ class Wizard {
                     course.sectionCount[sched.day][0]++
                 })
             })
-            course.recitations.sections.forEach(section => {
-                section.schedule.forEach(sched => {
-                    course.sectionCount[sched.day][1]++
+            if(course.recitations != null){
+                course.recitations.sections.forEach(section => {
+                    section.schedule.forEach(sched => {
+                        course.sectionCount[sched.day][1]++
+                    })
                 })
-            })
-            console.log(course.sectionCount)
+            }
         })
+    }
+    prioritizeCourses(){
+        this.courses.forEach(course => {
+            course.sectionCount.forEach(day => {
+                course.lectureCount += day[0]
+                course.recitCount += day[1]
+            })
+        })
+
+
     }
 
 

@@ -20,4 +20,12 @@ describe('Wizard class fn test', () => {
             expect(SUWizard.courses.length).to.be.greaterThan(0);
         })
     })
+
+    context('test for gettings sections', () => {
+        it('should set modify courses', () => {
+            SUWizard.courses.forEach(course => {
+                expect(course.sectionCount).to.not.deep.equal([[0,0],[0,0],[0,0],[0,0],[0,0]])
+            })
+        })
+    })
 })
