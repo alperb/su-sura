@@ -1,0 +1,31 @@
+{
+  "name": "sura",
+  "version": "0.1.0",
+  "description": "Schedule Wizard for SUchedule",
+  "main": "wizard.js",
+  "scripts": {
+    "test": "mocha wizard.test.js",
+    "start": "node wizard.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alperb/sura.git"
+  },
+  "keywords": [
+    "wizard",
+    "schedule"
+  ],
+  "author": "Alper Berber <berber@sabanciuniv.edu>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alperb/sura/issues"
+  },
+  "homepage": "https://github.com/alperb/sura#readme",
+  "dependencies": {
+    "fs": "0.0.1-security"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.2.0"
+  }
+}
