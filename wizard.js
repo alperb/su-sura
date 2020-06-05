@@ -4,20 +4,17 @@
 */
 const fs = require('fs')
 
-var data;
-data = JSON.parse(fs.readFileSync('data.json'))
-
 
 class Wizard {
     /**
      * Constructs class' basic properties.
-     * @param  {{}} datasheet File where all the courses are stored
+     * @param  {string} datasheet File where all the courses are stored
      * @param  {[string]} coursesWanted Courses wanted, notated in shortcode (e.g CS 201)
      * @param {[{}]} options Options specified for the algorithm
      * @returns {[{}]}
      */
     constructor(datasheet, courses, options){
-        this.data = datasheet.courses
+        this.data = JSON.parse(fs.readFileSync(datasheet)).courses
         this.courses = []
         this.coursesWanted = courses
         this.schedule = [[], [], [], [], []]
@@ -186,8 +183,7 @@ class Wizard {
                 }
                 do {
                     if((tempCourse.code == "SPS 101" || tempCourse.code == "SPS 102") && tempCourse.sections[0].schedule[0].day != tempCourse.sections[1].schedule[0].day){
-                        tempCourse.sections = [possibleSections[this.randomInteger(0, possibleSections.length-1)], possibleRSections[this.randomInteger(0, possibleRSections.length-1)]]
-                        console.log(tempCourse.sections[0].schedule[0].day != tempCourse.sections[1].schedule[0].day);
+                        tempCourse.sections = [possibleSections[this.randomIntconsole.logeger(0, possibleSections.length-1)], possibleRSections[this.randomInteger(0, possibleRSections.length-1)]]
                     }
                 }
                 while((tempCourse.code == "SPS 101" || tempCourse.code == "SPS 102") && tempCourse.sections[0].schedule[0].day != tempCourse.sections[1].schedule[0].day){
@@ -212,14 +208,5 @@ class Wizard {
 
 
 }
-var SUWizard = new Wizard(data, ["CS 201", "SPS 102", "MATH 102", "NS 102", "TLL 102"], []);
-SUWizard.schedule.forEach(day => {
-    day.forEach(course => {
-        course.sections.forEach(sec => {
-            console.log(sec);
-        })
-    })
-})
-
 module.exports = {Wizard};
 

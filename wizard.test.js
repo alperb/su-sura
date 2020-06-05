@@ -3,10 +3,8 @@ const expect = require('chai').expect
 const wizard = require('./wizard').Wizard
 const fs = require('fs')
 
-var data, SUWizard;
-var content = fs.readFileSync('data.json');
-data = JSON.parse(content)
-SUWizard = new wizard(data, ["CS 201"], []);
+var SUWizard;
+SUWizard = new wizard("data.json", ["CS 201"], []);
 
 describe('Wizard class fn test', () => {
     
