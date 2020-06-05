@@ -7,7 +7,7 @@ Schedule wizard for Sabancı University. \
 
 ## Installation
 
-You can use **sura** install npm:
+You can use **sura** via npm:
 
 ```
 npm install su-sura
