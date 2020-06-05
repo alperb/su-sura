@@ -18,10 +18,9 @@ npm install su-sura
 First we need to require **sura**:
 
 ```js
-var data = fs.readFileSync('data.json')
 var courses =  ["MATH 102"]
 var options = []
 
 const Sura = require('su-sura')
-var Wizard = new Sura.Wizard(data, courses, options)
+var Wizard = new Sura.Wizard('data.json', courses, options)
 ```
