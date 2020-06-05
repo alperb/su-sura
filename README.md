@@ -24,3 +24,9 @@ var options = []
 const Sura = require('su-sura')
 var Wizard = new Sura.Wizard('data.json', courses, options)
 ```
+
+Then accessing class variables to generate a schedule
+
+```js
+SUWizard.schedule // is an array with 5 sub-arrays each corresponds to a day
+```
