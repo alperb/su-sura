@@ -4,7 +4,7 @@ const wizard = require('./wizard').Wizard
 const fs = require('fs')
 
 var SUWizard;
-SUWizard = new wizard("data.json", ["CS 201"], []);
+SUWizard = new wizard("data.json", ["CS 201"], {"freeDay": 1});
 
 describe('Wizard class fn test', () => {
     
@@ -51,6 +51,7 @@ describe('Wizard class fn test', () => {
             }
             expect(SUWizard.isConflict(testSection, time_table)).to.be.equal(true);
             expect(SUWizard.isConflict(textSection2, time_table)).to.be.equal(false);
+            console.log(SUWizard.schedule)
         })
     })
 })

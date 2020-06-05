@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alperb/sura.git"
+    "url": "git+https://github.com/alperb/su-sura.git"
   },
   "keywords": [
     "wizard",
@@ -18,9 +18,9 @@
   "author": "Alper Berber <berber@sabanciuniv.edu>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alperb/sura/issues"
+    "url": "https://github.com/alperb/su-sura/issues"
   },
-  "homepage": "https://github.com/alperb/sura#readme",
+  "homepage": "https://github.com/alperb/su-sura#readme",
   "dependencies": {
     "fs": "0.0.1-security"
   },

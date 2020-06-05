@@ -10,7 +10,7 @@ class Wizard {
      * Constructs class' basic properties.
      * @param  {string} datasheet File where all the courses are stored
      * @param  {[string]} coursesWanted Courses wanted, notated in shortcode (e.g CS 201)
-     * @param {[{}]} options Options specified for the algorithm
+     * @param {{}} options Options specified for the algorithm
      * @returns {[{}]}
      */
     constructor(datasheet, courses, options){
@@ -118,24 +118,18 @@ class Wizard {
                         var cSection = schedule[i].sections[n].schedule[m];
                         var sectionClass = section.schedule[k];
                         if(
-                            (cSection.day == sectionClass.day) && 
-                            (
-                                (
-                                    (sectionClass.start >= cSection.start) && 
-                                    (sectionClass.start < (cSection.start + cSection.duration))
-                                ) ||
-                                (
-                                    (sectionClass.start + sectionClass.duration > cSection.start) && 
-                                    (sectionClass.start + sectionClass.duration <= cSection.start + cSection.duration)
-                                )
-                            )
+                            (this.options.freeDay && sectionClass.day == this.options.freeDay) ||
+                            (cSection.day == sectionClass.day) && (((sectionClass.start >= cSection.start) && (sectionClass.start < (cSection.start + cSection.duration))) || ((sectionClass.start + sectionClass.duration > cSection.start) && (sectionClass.start + sectionClass.duration <= cSection.start + cSection.duration)))
                         ) {
                             check = true;
                             break;
                         }
                     }
+                    if(check) break;
                 }
+                if(check) break;
             }
+            if(check) break;
         }
         return check;
     }
@@ -208,5 +202,7 @@ class Wizard {
 
 
 }
+var Sura = new Wizard('data.json', ["MATH 102", "TLL 102"], {freeDay: 2})
+console.log(Sura.schedule)
 module.exports = {Wizard};
 
