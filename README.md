@@ -1,7 +1,7 @@
 # 📕 sura
 
 Schedule wizard for Sabancı University. \
-[![Build Status](https://travis-ci.com/alperb/sura.svg?token=Yf4w6vpgA18wTdJ9UoCf&branch=master)](https://travis-ci.com/alperb/sura)
+[![Build Status](https://travis-ci.com/alperb/sura.svg?token=Yf4w6vpgA18wTdJ9UoCf&branch=master)](https://travis-ci.com/alperb/su-sura)
 
 ---
 
