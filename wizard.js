@@ -202,7 +202,5 @@ class Wizard {
 
 
 }
-var Sura = new Wizard('data.json', ["MATH 102", "TLL 102"], {freeDay: 2})
-console.log(Sura.schedule)
 module.exports = {Wizard};
 

@@ -51,7 +51,6 @@ describe('Wizard class fn test', () => {
             }
             expect(SUWizard.isConflict(testSection, time_table)).to.be.equal(true);
             expect(SUWizard.isConflict(textSection2, time_table)).to.be.equal(false);
-            console.log(SUWizard.schedule)
         })
     })
 })
