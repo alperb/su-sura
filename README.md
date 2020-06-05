@@ -19,7 +19,7 @@ First we need to require **sura**:
 
 ```js
 var courses =  ["MATH 102"]
-var options = []
+var options = {}
 
 const Sura = require('su-sura')
 var Wizard = new Sura.Wizard('data.json', courses, options)
