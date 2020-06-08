@@ -1,7 +1,7 @@
-# 📕 sura
+# 📕 sura ![](https://img.shields.io/badge/version-0.1.0-blue) [![Build Status](https://travis-ci.com/alperb/sura.svg?token=Yf4w6vpgA18wTdJ9UoCf&branch=master)](https://travis-ci.com/alperb/su-sura)
+
 
 Schedule wizard for Sabancı University. \
-[![Build Status](https://travis-ci.com/alperb/sura.svg?token=Yf4w6vpgA18wTdJ9UoCf&branch=master)](https://travis-ci.com/alperb/su-sura)
 
 ---
 
