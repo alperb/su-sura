@@ -208,7 +208,6 @@ class Wizard {
 
         }
         this.testSchedule = testSchedule;
-        console.log(testSchedule)
     }
     rearrangeSchedule(){
         for(var i = 0; i < this.testSchedule.length; i++){
