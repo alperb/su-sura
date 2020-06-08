@@ -136,8 +136,21 @@ class Wizard {
     randomInteger(min, max){
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
+    checkOptionConflict(section, schedule){
+        var check = false;
+        if(this.options.freeDay != undefined && !check){
+            for(let i = 0; i < section.schedule.length; i++){
+                if(section.schedule[i].day == this.options.freeDay){
+                    check = true;
+                    break;
+                }
+            }
+        }
+    }
     createSchedule(){
+        var errorCount = 0;
         var testSchedule = []
+        
 
 
         //TODO this function becomes n^8!!!!!!!!!!
@@ -148,14 +161,14 @@ class Wizard {
             
             for(var k = 0; k < course.lectures.sections.length; k++){
                 var section = course.lectures.sections[k];
-                if(!this.isConflict(section, testSchedule)){
+                if(!this.isConflict(section, testSchedule) && !this.checkOptionConflict(section, testSchedule)){
                     possibleSections.push(section);
                 }
             }
             if(course.recitations != null){
                 for(var l = 0; l < course.recitations.sections.length; l++){
                     var rsection = course.recitations.sections[l];
-                    if(!this.isConflict(rsection, testSchedule)){
+                    if(!this.isConflict(rsection, testSchedule) && !this.checkOptionConflict(rsection, testSchedule)){
                         possibleRSections.push(rsection);
                     }
                 }
@@ -165,9 +178,17 @@ class Wizard {
                 console.log("No available sections for " + course.name);
                 i = 0;
                 k = 0;
+                errorCount += 1;
                 possibleSections = []
                 possibleRSections = []
-                continue;
+                if(errorCount >= this.courses.length * 2){
+                    console.log("No possible schedule with given courses available.");
+                    break;
+                }
+                else{
+                    continue;
+                }
+                
             }
             else{
                 var tempCourse = {
@@ -175,18 +196,19 @@ class Wizard {
                     code: course.code,
                     sections: [possibleSections[this.randomInteger(0, possibleSections.length-1)], possibleRSections[this.randomInteger(0, possibleRSections.length-1)]],
                 }
-                do {
-                    if((tempCourse.code == "SPS 101" || tempCourse.code == "SPS 102") && tempCourse.sections[0].schedule[0].day != tempCourse.sections[1].schedule[0].day){
-                        tempCourse.sections = [possibleSections[this.randomIntconsole.logeger(0, possibleSections.length-1)], possibleRSections[this.randomInteger(0, possibleRSections.length-1)]]
+                if(tempCourse.code == "SPS 101" || tempCourse.code == "SPS 102"){
+                    while(tempCourse.sections[0].group.charAt(0) != tempCourse.sections[1].group.charAt(0)){
+                        tempCourse.sections = [possibleSections[this.randomInteger(0, possibleSections.length-1)], possibleRSections[this.randomInteger(0, possibleRSections.length-1)]]
                     }
-                }
-                while((tempCourse.code == "SPS 101" || tempCourse.code == "SPS 102") && tempCourse.sections[0].schedule[0].day != tempCourse.sections[1].schedule[0].day){
-                    tempCourse.sections = [possibleSections[this.randomInteger(0, possibleSections.length-1)], possibleRSections[this.randomInteger(0, possibleRSections.length-1)]]
                 }
                 testSchedule.push(tempCourse)
             }
         }
+        if(testSchedule.length != this.courses.length){
+
+        }
         this.testSchedule = testSchedule;
+        console.log(testSchedule)
     }
     rearrangeSchedule(){
         for(var i = 0; i < this.testSchedule.length; i++){
@@ -202,5 +224,7 @@ class Wizard {
 
 
 }
+
+var Sura = new Wizard('data.json', ["MATH 102", "SPS 102", "CS 201", "NS 102", "TLL 102"], {freeDay: 2})
 module.exports = {Wizard};
 
