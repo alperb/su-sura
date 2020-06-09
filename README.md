@@ -1,4 +1,4 @@
-# 📕 sura ![](https://img.shields.io/badge/version-0.1.0-blue) [![Build Status](https://travis-ci.com/alperb/su-sura.svg?branch=master)](https://travis-ci.com/alperb/su-sura)
+# 📕 sura ![](https://img.shields.io/badge/version-0.1.3-blue) [![Build Status](https://travis-ci.com/alperb/su-sura.svg?branch=master)](https://travis-ci.com/alperb/su-sura)
 
 
 Schedule wizard for Sabancı University. \
