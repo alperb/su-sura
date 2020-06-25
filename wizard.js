@@ -4,6 +4,8 @@
 */
 
 
+
+
 class Wizard {
     /**
      * Constructs class' basic properties.
@@ -18,6 +20,7 @@ class Wizard {
         this.coursesWanted = courses
         this.schedule = [[], [], [], [], []]
         this.options = options
+        this.state = "STARTING";
         this.requirements = {
             recitDependency: [],
         }
@@ -31,8 +34,10 @@ class Wizard {
      * Modifies the structure of the course objects to a more useful structure.
      */
     sortCourses(){
+        this.state = "WORKING"
         let newCourses = [];
-        this.data.forEach(course => {
+        for(let i = 0; i < this.data.length; i++){
+            let course = this.data[i];
             if(this.coursesWanted.includes(course.code)){
                 var tempCourse = {
                     name: course.name,
@@ -44,7 +49,7 @@ class Wizard {
                 }
                 newCourses.push(tempCourse)
             }
-        })
+        }
         this.courses = newCourses;
         this.courses.forEach(course => {
             if(course.recitations != null && (course.recitations.type == "R" || course.recitations.type == "D")) this.requirements.recitDependency.push(course.code);
@@ -173,14 +178,13 @@ class Wizard {
             }
             
             if(possibleSections.length == 0){
-                console.log("No available sections for " + course.name);
                 i = 0;
                 k = 0;
                 errorCount += 1;
                 possibleSections = []
                 possibleRSections = []
                 if(errorCount >= this.courses.length * 2){
-                    console.log("No possible schedule with given courses available.");
+                    this.state = "FAILED"
                     break;
                 }
                 else{
@@ -217,6 +221,7 @@ class Wizard {
                
             }
         }
+        this.state = "SUCCESS";
     }
 
 
