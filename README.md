@@ -20,12 +20,13 @@ First we need to require **sura**:
 ```js
 var courses =  ["MATH 102"]
 var options = {}
+var courses = [...] // Array of course objects
 
 const Sura = require('su-sura')
-var Wizard = new Sura.Wizard('data.json', courses, options)
+var Wizard = new Sura.Wizard(courses, courses, options)
 ```
 
-As its constructor generates a schedule, you can access it by ```schedule``` property:
+As the constructor generates a schedule, you can access it by the ```schedule``` property:
 
 ```js
 SUWizard.schedule // is an array with 5 sub-arrays each corresponds to a day
