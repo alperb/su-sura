@@ -14,7 +14,7 @@ class Wizard {
      * @returns {[{}]}
      */
     constructor(datasheet, courses, options){
-        this.data = JSON.parse(fs.readFileSync(datasheet)).courses
+        this.data = (typeof(datasheet) == "object") ? datasheet : ((typeof(datasheet) == "string") ? JSON.parse(fs.readFileSync(datasheet)).courses : undefined)
         this.courses = []
         this.coursesWanted = courses
         this.schedule = [[], [], [], [], []]
