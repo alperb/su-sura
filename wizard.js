@@ -2,19 +2,18 @@
  * Author: Alper Berber <berber@sabanciuniv.edu>
  * Copyright (c) 2020
 */
-const fs = require('fs')
 
 
 class Wizard {
     /**
      * Constructs class' basic properties.
-     * @param  {string} datasheet File where all the courses are stored
+     * @param  {{}} datasheet Courses object
      * @param  {[string]} coursesWanted Courses wanted, notated in shortcode (e.g CS 201)
      * @param {{}} options Options specified for the algorithm
      * @returns {[{}]}
      */
     constructor(datasheet, courses, options){
-        this.data = (typeof(datasheet) == "object") ? datasheet : ((typeof(datasheet) == "string") ? JSON.parse(fs.readFileSync(datasheet)).courses : undefined)
+        this.data = datasheet
         this.courses = []
         this.coursesWanted = courses
         this.schedule = [[], [], [], [], []]
