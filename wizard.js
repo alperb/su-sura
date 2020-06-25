@@ -32,7 +32,6 @@ class Wizard {
      */
     sortCourses(){
         let newCourses = [];
-        for(let i = 0; i < this.data.length; i++){}
         this.data.forEach(course => {
             if(this.coursesWanted.includes(course.code)){
                 var tempCourse = {
@@ -222,7 +221,5 @@ class Wizard {
 
 
 }
-
-var Sura = new Wizard('data.json', ["MATH 102", "SPS 102", "CS 201", "NS 102", "TLL 102"], {freeDay: 2})
 module.exports = {Wizard};
 
