@@ -13,9 +13,9 @@ describe('Wizard class fn test', () => {
         it('should sort the courses', () => {
             expect(SUWizard.sortCourses()).to.equal(true); 
         })
-        it('should have a courses property with length > 0', () => { 
-            expect(SUWizard.courses).to.be.an('array');
-            expect(SUWizard.courses.length).to.be.greaterThan(0);
+        it('should have a data property with length > 0', () => { 
+            expect(SUWizard.data).to.be.an('array');
+            expect(SUWizard.data.length).to.be.greaterThan(0);
         })
     })
 

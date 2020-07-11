@@ -2,7 +2,7 @@
  * Author: Alper Berber <berber@sabanciuniv.edu>
  * Copyright (c) 2020
 */
-
+const fs = require('fs');
 
 
 
@@ -14,8 +14,8 @@ class Wizard {
      * @param {{}} options Options specified for the algorithm
      * @returns {[{}]}
      */
-    constructor(datasheet, courses, options){
-        this.data = datasheet
+    constructor(courses, options){
+        this.data = JSON.parse(fs.readFileSync('data.json').toString('utf-8')).courses;
         this.courses = []
         this.coursesWanted = courses
         this.schedule = [[], [], [], [], []]
@@ -28,7 +28,9 @@ class Wizard {
         this.getSections()
         this.prioritizeCourses()
         this.createSchedule()
-        this.rearrangeSchedule()
+        if(this.state === "WORKING"){
+            this.rearrangeSchedule()
+        }
     }
     /**
      * Modifies the structure of the course objects to a more useful structure.
@@ -113,7 +115,7 @@ class Wizard {
     isConflict(section, schedule){
         var check = false;
         if(schedule.length == 0) return false;
-        //TODO try to reduce the time it takes, its n^4!!!!
+        //TODO try to reduce the time it takes O(n^4)
         for(let i = 0; i < schedule.length; i++){
             for(let k = 0; k < section.schedule.length; k++){
                 for(let n = 0; n < schedule[i].sections.length; n++){
@@ -136,10 +138,19 @@ class Wizard {
         }
         return check;
     }
+    /**
+     * Generates a random integer in the range of min and max including endpoints.
+     * @param {Integer} min 
+     * @param {Integer} max 
+     */
     randomInteger(min, max){
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
-    checkOptionConflict(section, schedule){
+    /**
+     * Checks if given section conflicts with any given option.
+     * @param {{}} section
+     */
+    checkOptionConflict(section){
         var check = false;
         if(this.options.freeDay != undefined && !check){
             for(let i = 0; i < section.schedule.length; i++){
@@ -156,7 +167,7 @@ class Wizard {
         
 
 
-        //TODO this function becomes n^8!!!!!!!!!!
+        //TODO this function becomes n^8
         for(var i = 0; i < this.courses.length; i++){
             var course = this.courses[i];
             var possibleSections = []
@@ -164,14 +175,14 @@ class Wizard {
             
             for(var k = 0; k < course.lectures.sections.length; k++){
                 var section = course.lectures.sections[k];
-                if(!this.isConflict(section, testSchedule) && !this.checkOptionConflict(section, testSchedule)){
+                if(!this.isConflict(section, testSchedule) && !this.checkOptionConflict(section)){
                     possibleSections.push(section);
                 }
             }
             if(course.recitations != null){
                 for(var l = 0; l < course.recitations.sections.length; l++){
                     var rsection = course.recitations.sections[l];
-                    if(!this.isConflict(rsection, testSchedule) && !this.checkOptionConflict(rsection, testSchedule)){
+                    if(!this.isConflict(rsection, testSchedule) && !this.checkOptionConflict(rsection)){
                         possibleRSections.push(rsection);
                     }
                 }
