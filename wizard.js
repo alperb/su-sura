@@ -9,10 +9,8 @@ const fs = require('fs');
 class Wizard {
     /**
      * Constructs class' basic properties.
-     * @param  {{}} datasheet Courses object
-     * @param  {[string]} coursesWanted Courses wanted, notated in shortcode (e.g CS 201)
+     * @param  {[string]} courses Courses wanted, notated in shortcode (e.g CS 201)
      * @param {{}} options Options specified for the algorithm
-     * @returns {[{}]}
      */
     constructor(courses, options){
         this.data = JSON.parse(fs.readFileSync('data.json').toString('utf-8')).courses;
@@ -237,5 +235,5 @@ class Wizard {
 
 
 }
-module.exports = {Wizard};
+module.exports = Wizard;
 
