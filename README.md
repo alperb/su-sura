@@ -22,7 +22,7 @@ var courses =  ["MATH 102"]
 var options = {}
 
 const Sura = require('su-sura')
-var Wizard = new Sura.Wizard(courses, options)
+var SUWizard = new Sura(courses, options)
 ```
 
 As the constructor generates a schedule, you can access it with the ```schedule``` property:
